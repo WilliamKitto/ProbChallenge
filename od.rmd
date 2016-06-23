@@ -25,6 +25,26 @@ It should be easy to see that any number from 2 to 12 is a possibility.
 
 Determine the probability of rolling a seven?
 
+
+We approach thru repeated random sampling by setting  
+up our three dice as d1, d2, and d3. And then we roll them using "sample"" and add them up. Every time we roll we put the result in as the next element of an array we have named "count". Finally the "table" command issued on the array  "count" gives us the information we seek. The probability of rolling 7 is the number in the count table divided by the length of the array "count" -- 10,000 in this case.
+
+```{r}
+d1=c(0,1,2,2,3,4)
+d2=c(1,1,2,3,3,4)
+d3=c(1,1,1,2,3,4)
+count=numeric()
+
+for (i in 1:10000){
+  s1=sample(d1,size=1)
+   s2=sample(d2,size=1)
+    s3=sample(d3,size=1)
+    count[i]=sum(s1,s2,s3)
+}
+table(count)
+```
+
+
 ### Game two
 
 you have two standard dice  
