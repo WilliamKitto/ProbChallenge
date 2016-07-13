@@ -25,6 +25,34 @@ It should be easy to see that any number from 2 to 12 is a possibility.
 
 Determine the probability of rolling a seven?
 
+We note there are 6*6*6 possibilities each equally likely. So we simply compute each and summarize with the R function table()
+
+```{r}
+die_1=c(0,1,2,2,3,4)
+die_2=c(1,1,2,3,3,4)
+die_3=c(1,1,1,2,3,4)
+result=rep(0,times=6*6*6)
+dim(result)=c(6,6,6)
+for (i in 1:6){
+  for (j in 1:6){
+    for(k in 1:6){
+ result[i,j,k] = die_1[i] + die_2[j] + die_3[k]  
+    }
+  }
+}
+smry=table(as.numeric(result))
+smry
+names(smry)
+```
+So we conclude the probabilities of rolling a seven is  
+```{r}
+tst=as.list(smry)
+tst$`7`/(6*6*6)
+
+```
+
+
+
 ### Game two
 
 you have two standard dice  
