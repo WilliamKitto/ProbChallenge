@@ -95,6 +95,30 @@ You have three dice.Each die has four sides (they look like little pyramids).
 They each have the numbers 1,2,3, and 4 on their respective faces. When you roll them it is the number that is face down that you count.  In this setup the possible outcomes are the numbers from 3 throughn 12.  
 Determine the probability of rolling a seven? 
 
+
+
+We note there are `r 4*4*4` possibilities each equally likely. So we simply compute each and summarize with the R function table()
+
+```{r}
+die_1=c(1,2,3,4)
+die_2=c(1,2,3,4)
+die_3=c(1,2,3,4)
+result=rep(0,times=4*4*4)
+dim(result)=c(4,4,4)
+for (i in 1:4){
+  for (j in 1:4){
+    for(k in 1:4){
+ result[i,j,k] = die_1[i] + die_2[j] + die_3[k]  
+    }
+  }
+}
+smry=table(as.numeric(result))
+smry
+names(smry)
+tst=as.list(smry)
+tst$`7`/(4*4*4)
+```
+
 ### Game four  
 
 Each die has 6 sides (it is a cube) however the distribution of the numbers on the dice is not uniform.  
@@ -124,14 +148,12 @@ for (i in 1:6){
 }
 smry=table(as.numeric(result))
 smry
-names(smry)
-```
-So we conclude the probabilities of rolling a seven is  
-```{r}
 tst=as.list(smry)
 tst$`7`/(6*6*6)
 
 ```
+
+
 
 ### Final Summary
 
